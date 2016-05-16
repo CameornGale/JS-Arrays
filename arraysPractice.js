@@ -168,6 +168,10 @@ var myGroceryList = ['chips', 'pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 // ----> Q   <------
   //Code Here
   function removeItem(myGroceryList, item) {
+    if (arguments.length === 0) {
+      return [];
+
+    }
     for (var i = 0; i < myGroceryList.length; i++) {
       if (item === myGroceryList[i]) {
         myGroceryList.splice(i,1);
@@ -179,14 +183,15 @@ var myGroceryList = ['chips', 'pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 }
 
 
-  function addItem(myGroceryList, item) {
-    for (var i = 0; i < myGroceryList.length; i++) {
-      if (item !== myGroceryList[i]) {
-        myGroceryList.push(item);
-      }
-    }
-    return myGroceryList;
+function addItem(myGroceryList, item) {
+  if (arguments.length === 0) {
+    return [];
+
   }
+myGroceryList.push(item);
+  return myGroceryList;
+}
+
 
 //removeItem(myGroceryList, 'chips') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 //addItem(myGroceryList, 'Jerky') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs', 'Jerky'];
@@ -259,10 +264,19 @@ for(var i = 0; i < num2; i++){
   'both' should return a new array with the matching numbers found in both arr1 and arr2.
   Example: var arr1 = [1,2,3,4]; var arr2 = [2,4,5,6]; newArray // [2,4]
 */
-
+//----> Q   <------
   //Code Here
   function both (arr1, arr2) {
-    var newArray = arr1.concat(arr2);
+    var bothArray = [];
+    for (var i = 0; i < arr1.length; i++) {
+      for (var j = 0; j < arr2.length; j++) {
+        if (arr1[i] === arr2[j] ) {
+          bothArray.push(arr1[i])
+        }
+      }
+
+      }
+    return bothArray;
   }
 
 
@@ -317,14 +331,10 @@ Loop through your devMountainEmployees until you find cahlan, then remove him fr
   //Code Here
   function letGo() {
     var arr = devMountainEmployees;
-    var person = {
-        name: 'Cahlan',
-        position: 'CEO',
-        spiritAnimal: 'butterfly'
-    };
+    var person = "Cahlan";
 
     for (var i = 0; i < arr.length; i++) {
-      if (arr[i] === person) {
+      if (arr[i].name === person) {
         arr.splice(i, 1);
         i--;
       }
